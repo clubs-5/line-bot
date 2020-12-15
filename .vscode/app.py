@@ -13,6 +13,7 @@ from linebot.models import (
 )
 
 app = Flask(__name__)
+static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
 # Channel Access Token
 line_bot_api = LineBotApi('KH0oUZctJ5HEkTaJ8LsDewWB3efij6CtAJa1Sr6Nrp+LtzREzjZS43aUZJxkWdxary0Yhkyyq0hkmmx/m/GeBmD4qJZqCZWQ9oNFyD/yQDoU2unJKaXNYdmUVYrgnFM0VPlct1UtmfRo9TjiaBxcKAdB04t89/1O/w1cDnyilFU=')
 # Channel Secret
@@ -47,6 +48,7 @@ def handle_message(event):
         message = TextMessage(text=msg)
         line_bot_api.reply_message(event.reply_token,message)
 
-
+import os
 if __name__ == "__main__":
-    app.run()
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
