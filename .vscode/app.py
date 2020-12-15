@@ -1,3 +1,5 @@
+import json
+
 from flask import Flask, request, abort
 
 from linebot import (
@@ -37,6 +39,8 @@ def callback():
 #處理訊息
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    user_id = event.source.user_id
+    print("user_id =", user_id)
     msg = event.message.text 
     if '我想看影集' in msg:
         message = imagemap_message()
