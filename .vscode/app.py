@@ -39,7 +39,7 @@ def callback():
 def handle_message(event):
     msg = event.message.text 
     if '我想看影集' in msg:
-        message = buttons_message()
+        message = imagemap_message()
         line_bot_api.reply_message(event.reply_token, message)
     else:
         message = TextMessage(text=msg)
